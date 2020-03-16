@@ -18,9 +18,17 @@ import run.halo.app.repository.base.BaseRepositoryImpl;
  * @author ryanwang
  * @date 2017-11-14
  */
+
+/**
+ * springboot的启动类,程序的入口
+ */
+//Springboot 应用注解
 @SpringBootApplication
+//JAP
 @EnableJpaAuditing
+//开启spring 计划任务
 @EnableScheduling
+//同步...待定
 @EnableAsync
 @EnableJpaRepositories(basePackages = "run.halo.app.repository", repositoryBaseClass = BaseRepositoryImpl.class)
 public class Application extends SpringBootServletInitializer {
@@ -46,7 +54,6 @@ public class Application extends SpringBootServletInitializer {
             context.close();
             context = SpringApplication.run(Application.class, args.getSourceArgs());
         });
-
         thread.setDaemon(false);
         thread.start();
     }
