@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.GenericGenerator;
 import run.halo.app.model.enums.PostEditorType;
 import run.halo.app.model.enums.PostStatus;
 
@@ -18,14 +19,17 @@ import java.util.Date;
  */
 @Data
 @Entity(name = "BasePost")
-@Table(name = "posts")
+@Table(name = "posts",
+    indexes = {@Index(name = "posts_type_status", columnList = "type, status"),
+        @Index(name = "posts_create_time", columnList = "create_time")})
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.INTEGER, columnDefinition = "int default 0")
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class BasePost extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "custom-id")
+    @GenericGenerator(name = "custom-id", strategy = "run.halo.app.model.entity.support.CustomIdGenerator")
     private Integer id;
 
     /**

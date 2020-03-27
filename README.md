@@ -3,7 +3,6 @@
 > Halo 是一款现代化的个人独立博客系统，给习惯写博客的同学多一个选择。
 
 <p align="center">
-<a href="#"><img alt="JDK" src="https://img.shields.io/badge/JDK-1.8-yellow.svg?style=flat-square"/></a>
 <a href="https://github.com/halo-dev/halo/releases"><img alt="GitHub release" src="https://img.shields.io/github/release/halo-dev/halo.svg?style=flat-square"/></a>
 <a href="https://github.com/halo-dev/halo/releases"><img alt="GitHub All Releases" src="https://img.shields.io/github/downloads/halo-dev/halo/total.svg?style=flat-square"></a>
 <a href="https://hub.docker.com/r/ruibaby/halo"><img alt="Docker pulls" src="https://img.shields.io/docker/pulls/ruibaby/halo?style=flat-square"></a>
@@ -15,11 +14,11 @@
 
 ## 简介
 
-**Halo** [ˈheɪloʊ]，意为光环。当然，你也可以当成拼音读(哈喽)。
+**Halo** `[ˈheɪloʊ]`，意为光环。当然，你也可以当成拼音读(哈喽)。
 
 一个优秀的开源博客发布应用，值得一试。
 
-> [官网](https://halo.run) | [社区](https://bbs.halo.run) | [QQ 交流群](https://jq.qq.com/?_wv=1027&k=5tnr930) | [Telegram 交流群](https://t.me/HaloBlog) | [Telegram 频道](https://t.me/halo_dev)
+> [官网 & 文档](https://halo.run) | [社区](https://bbs.halo.run) | [Telegram 频道](https://t.me/halo_dev)
 
 ## 声明
 
@@ -27,7 +26,7 @@
 
 另外，写给想自己拉代码编译运行的同学：
 
-> 目前我们的开发分支即 master，肯定会有很多小问题，不要运行不起来就跑过来吐槽什么代码开源不完整之类的，多找找自己的原因。同时建议下载最新 release 版本的代码，或者在 master 分支执行 `git checkout v1.2.0`。
+> 目前我们的开发分支即 master，肯定会有很多小问题，不要运行不起来就跑过来吐槽什么代码开源不完整之类的，多找找自己的原因。同时建议下载最新 release 版本的代码，或者在 master 分支执行 `git checkout v1.3.0`。
 
 PS：实在不想写这个声明（影响 README 的美观），但是就目前来看，写在 README 上是有必要的，因为大部分遇到问题的人都不会去仔细阅读文档。
 
@@ -36,13 +35,13 @@ PS：实在不想写这个声明（影响 README 的美观），但是就目前�
 ### 下载最新的 Halo 安装包
 
 ```bash
-curl -L https://github.com/halo-dev/halo/releases/download/v1.2.0/halo-1.2.0.jar --output halo-latest.jar
+curl -L https://github.com/halo-dev/halo/releases/download/v1.3.0/halo-1.3.0.jar --output halo-latest.jar
 ```
 
 或者
 
 ```bash
-wget https://github.com/halo-dev/halo/releases/download/v1.2.0/halo-1.2.0.jar -O halo-latest.jar
+wget https://github.com/halo-dev/halo/releases/download/v1.3.0/halo-1.3.0.jar -O halo-latest.jar
 ```
 
 ### 启动 Halo
@@ -51,18 +50,18 @@ wget https://github.com/halo-dev/halo/releases/download/v1.2.0/halo-1.2.0.jar -O
 java -jar halo-latest.jar
 ```
 
-详细部署文档请移步：<https://halo.run/archives/install-quick-start>
+详细部署文档请移步：<https://halo.run/archives/install-quick-start.html>
 
 ## 博客示例
 
-请移步： <https://halo.run/s/user-wall>。
+请移步： <https://halo.run/p/user-wall.html>。
 
 ## 周边
 
 - 后台管理（halo-admin）：<https://github.com/halo-dev/halo-admin>
 - 独立评论模块（halo-comment）：<https://github.com/halo-dev/halo-comment>
 - 管理 APP（已停止维护）：<https://github.com/halo-dev/halo-app>
-- 主题仓库：<https://halo.run/s/themes>
+- 主题仓库：<https://halo.run/p/themes.html>
 - 资源下载：<https://dl.halo.run>
 - WeHalo 小程序：<https://github.com/aquanlerou/WeHalo>
 

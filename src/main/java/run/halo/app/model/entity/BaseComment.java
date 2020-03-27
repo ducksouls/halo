@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.GenericGenerator;
 import run.halo.app.model.enums.CommentStatus;
 import run.halo.app.utils.ServiceUtils;
 
@@ -18,14 +19,18 @@ import javax.persistence.*;
  */
 @Data
 @Entity(name = "BaseComment")
-@Table(name = "comments", indexes = {@Index(name = "comments_post_id", columnList = "post_id")})
+@Table(name = "comments",
+    indexes = {@Index(name = "comments_post_id", columnList = "post_id"),
+        @Index(name = "comments_type_status", columnList = "type, status"),
+        @Index(name = "comments_parent_id", columnList = "parent_id")})
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.INTEGER, columnDefinition = "int default 0")
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class BaseComment extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "custom-id")
+    @GenericGenerator(name = "custom-id", strategy = "run.halo.app.model.entity.support.CustomIdGenerator")
     private Long id;
 
     /**

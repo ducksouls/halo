@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -15,14 +16,16 @@ import javax.persistence.*;
  */
 @Data
 @Entity
-@Table(name = "menus", indexes = {@Index(name = "menus_parent_id", columnList = "parent_id")})
+@Table(name = "menus",
+    indexes = {@Index(name = "menus_parent_id", columnList = "parent_id"),
+        @Index(name = "menus_name", columnList = "name")})
 @ToString
 @EqualsAndHashCode(callSuper = true)
 public class Menu extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "custom-id")
+    @GenericGenerator(name = "custom-id", strategy = "run.halo.app.model.entity.support.CustomIdGenerator")
     private Integer id;
 
     /**
