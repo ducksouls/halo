@@ -4,7 +4,7 @@ import static run.halo.app.model.support.HaloConst.DEFAULT_THEME_ID;
 
 /**
  * Primary properties.
- *
+ * 一个枚举类,表示了软件的首要(基础)配置
  * @author johnniang
  * @date 4/2/19
  */

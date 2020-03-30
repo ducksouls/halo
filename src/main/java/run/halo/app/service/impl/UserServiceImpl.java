@@ -129,11 +129,20 @@ public class UserServiceImpl extends AbstractCrudService<User, Integer> implemen
         return create(user);
     }
 
+    /**
+     * 账号必须没有被停用
+     * 满足条件是不可用的,当前时间小于这个ExpireTime,且非空
+     * 从报错信息看,错误是输入密码过多次错误,所以停用账号了,
+     * 需要等待一段时间才能继续使用.
+     *
+     * @param user user info must not be null
+     */
     @Override
     public void mustNotExpire(User user) {
         Assert.notNull(user, "User must not be null");
 
         Date now = DateUtils.now();
+        //
         if (user.getExpireTime() != null && user.getExpireTime().after(now)) {
             long seconds = TimeUnit.MILLISECONDS.toSeconds(user.getExpireTime().getTime() - now.getTime());
             // If expired

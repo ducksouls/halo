@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Cache lock annotation.
- *
+ *缓存锁的注解
  * @author johnniang
  * @date 3/28/19
  */

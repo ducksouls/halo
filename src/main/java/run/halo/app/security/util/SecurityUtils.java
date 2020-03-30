@@ -32,6 +32,13 @@ public class SecurityUtils {
     private SecurityUtils() {
     }
 
+    /**
+     * accessTokenKey又是什么????
+     * "halo.admin.access_token." + user.getID()
+     *
+     * @param user
+     * @return
+     */
     @NonNull
     public static String buildAccessTokenKey(@NonNull User user) {
         Assert.notNull(user, "User must not be null");

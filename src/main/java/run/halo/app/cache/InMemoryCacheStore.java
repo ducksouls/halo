@@ -13,7 +13,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * In-memory cache store.
- *
+ * 内存缓存
  * @author johnniang
  */
 @Slf4j
@@ -70,6 +70,7 @@ public class InMemoryCacheStore extends StringCacheStore {
         lock.lock();
         try {
             // Get the value before
+            //取得新的key或者空值
             Optional<String> valueOptional = get(key);
 
             if (valueOptional.isPresent()) {

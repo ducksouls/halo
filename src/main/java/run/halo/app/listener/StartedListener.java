@@ -25,7 +25,8 @@ import java.util.Collections;
 
 /**
  * The method executed after the application is started.
- *
+ *软件还没完全启动完全,这个监听器就已经启动了
+ * 比如:检测是否安装软件
  * @author ryanwang
  * @author guqing
  * @date 2018-12-05
@@ -55,6 +56,7 @@ public class StartedListener implements ApplicationListener<ApplicationStartedEv
 
     @Override
     public void onApplicationEvent(ApplicationStartedEvent event) {
+        //在此之前缓存已经清掉了???
         this.migrate();
         this.initThemes();
         this.printStartInfo();
@@ -92,6 +94,7 @@ public class StartedListener implements ApplicationListener<ApplicationStartedEv
      */
     private void initThemes() {
         // Whether the blog has initialized
+        //在这里判断是否安装了...cao
         Boolean isInstalled = optionService.getByPropertyOrDefault(PrimaryProperties.IS_INSTALLED, Boolean.class, false);
         try {
             String themeClassPath = ResourceUtils.CLASSPATH_URL_PREFIX + ThemeService.THEME_FOLDER;

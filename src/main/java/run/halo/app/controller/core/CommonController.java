@@ -2,6 +2,7 @@ package run.halo.app.controller.core;
 
 import cn.hutool.extra.servlet.ServletUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.autoconfigure.web.servlet.error.AbstractErrorController;
@@ -36,6 +37,8 @@ import java.util.Map;
 @RequestMapping("${server.error.path:${error.path:/error}}")
 public class CommonController extends AbstractErrorController {
 
+    @Value("${server.error.path:${error.path:/error}}")
+    String errorString;
     private static final String NOT_FOUND_TEMPLATE = "404.ftl";
 
     private static final String INTERNAL_ERROR_TEMPLATE = "500.ftl";

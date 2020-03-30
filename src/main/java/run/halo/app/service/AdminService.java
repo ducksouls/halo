@@ -9,7 +9,7 @@ import run.halo.app.security.token.AuthToken;
 
 /**
  * Admin service interface.
- *
+ * 关于admin的一些service
  * @author johnniang
  * @author ryanwang
  * @date 2019-04-29
@@ -29,7 +29,7 @@ public interface AdminService {
 
     /**
      * Authenticates.
-     *
+     * 验证
      * @param loginParam login param must not be null
      * @return authentication token
      */

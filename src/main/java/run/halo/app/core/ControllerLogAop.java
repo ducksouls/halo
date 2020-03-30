@@ -33,7 +33,7 @@ public class ControllerLogAop {
     public void controller() {
     }
 
-    @Around("controller()")
+    @Around("controller()")//所有的controller
     public Object controller(ProceedingJoinPoint joinPoint) throws Throwable {
         String className = joinPoint.getTarget().getClass().getSimpleName();
         String methodName = joinPoint.getSignature().getName();

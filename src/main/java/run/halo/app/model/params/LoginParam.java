@@ -8,7 +8,8 @@ import javax.validation.constraints.Size;
 
 /**
  * Login param.
- *
+ * 登录相关的参数,等于根用户分来了
+ * 密码和用户名
  * @author johnniang
  * @date 3/28/19
  */

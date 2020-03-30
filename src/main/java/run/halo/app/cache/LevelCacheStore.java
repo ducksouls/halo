@@ -19,7 +19,9 @@ import java.util.*;
 
 /**
  * level-db cache store
- * Create by Pencilso on 2020/1/9 7:20 下午
+ * 谷歌推出的一种kv数据库,读写效率高,由c++实现,
+ * 但是,iq80对 其用java重新开发了以便,所以无需安装其他包就能使用
+ * @Author Create by Pencilso on 2020/1/9 7:20 下午
  */
 @Slf4j
 public class LevelCacheStore extends StringCacheStore {

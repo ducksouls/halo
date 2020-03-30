@@ -12,7 +12,7 @@ import java.util.Optional;
 
 /**
  * User service interface.
- *
+ *用户服务
  * @author johnniang
  * @author ryanwang
  * @date 2019-03-14
@@ -102,7 +102,7 @@ public interface UserService extends CrudService<User, Integer> {
 
     /**
      * The user must not expire.
-     *
+     *为什么过期,这东西干嘛用的?
      * @param user user info must not be null
      * @throws ForbiddenException throws if the given user has been expired
      */

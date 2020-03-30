@@ -10,7 +10,9 @@ import java.util.Date;
 
 /**
  * User entity
- *
+ *user的实体类
+ * JPA：Java Persistence API(一种规范)，用于对象持久化的 API
+ * 然后使用Hibernate去做持久化
  * @author ryanwang
  * @date 2019-03-12
  */

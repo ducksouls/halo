@@ -5,7 +5,11 @@ import lombok.Data;
 
 /**
  * Access token.
- *
+ *访问令牌主要有这几个属性
+ *<br></br>
+ * 1. token字符串accessToken
+ * 2. 过期时间 expiredIn 在这个时间后过期
+ * 3. refreshToken ??????
  * @author johnniang
  * @date 19-4-29
  */

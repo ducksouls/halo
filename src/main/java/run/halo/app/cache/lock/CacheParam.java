@@ -4,7 +4,7 @@ import java.lang.annotation.*;
 
 /**
  * Cache parameter annotation.
- *
+ * 换存参数注解
  * @author johnniang
  * @date 3/28/19
  */

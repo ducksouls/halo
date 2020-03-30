@@ -41,7 +41,7 @@ import java.util.stream.Collectors;
 
 /**
  * OptionService implementation class
- *
+ * 选项服务,软件是否安装的关于软件配置的服务类
  * @author ryanwang
  * @date 2019-03-14
  */
@@ -167,10 +167,14 @@ public class OptionServiceImpl extends AbstractCrudService<Option, Integer> impl
         save(optionMap);
     }
 
+    /**
+     * 缓存用在这里了...
+     */
     @Override
     @SuppressWarnings("unchecked")
     public Map<String, Object> listOptions() {
         // Get options from cache
+        //缓存用在了这里
         return cacheStore.getAny(OPTIONS_KEY, Map.class).orElseGet(() -> {
             List<Option> options = listAll();
 

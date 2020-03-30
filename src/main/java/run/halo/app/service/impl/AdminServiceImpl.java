@@ -97,6 +97,7 @@ public class AdminServiceImpl implements AdminService {
 
     private final String mode;
 
+    ///构造太长了吧
     public AdminServiceImpl(PostService postService,
                             SheetService sheetService,
                             AttachmentService attachmentService,
@@ -131,6 +132,12 @@ public class AdminServiceImpl implements AdminService {
         this.mode = mode;
     }
 
+    /**
+     * 认证
+     *
+     * @param loginParam login param must not be null
+     * @return
+     */
     @Override
     public AuthToken authenticate(LoginParam loginParam) {
         Assert.notNull(loginParam, "Login param must not be null");
@@ -143,15 +150,17 @@ public class AdminServiceImpl implements AdminService {
 
         try {
             // Get user by username or email
+            //Validator是个用来验证字符串的类
             user = Validator.isEmail(username) ?
                     userService.getByEmailOfNonNull(username) : userService.getByUsernameOfNonNull(username);
         } catch (NotFoundException e) {
             log.error("Failed to find user by name: " + username, e);
+            //事件发布器,发布登录失败的事件
             eventPublisher.publishEvent(new LogEvent(this, loginParam.getUsername(), LogType.LOGIN_FAILED, loginParam.getUsername()));
 
             throw new BadRequestException(mismatchTip);
         }
-
+        //2020年3月29日13:33:25目前来看,过期的操作是由于输入密码多次出错所以需要
         userService.mustNotExpire(user);
 
         if (!userService.passwordMatch(user, loginParam.getPassword())) {
@@ -169,7 +178,8 @@ public class AdminServiceImpl implements AdminService {
         // Log it then login successful
         eventPublisher.publishEvent(new LogEvent(this, user.getUsername(), LogType.LOGGED_IN, user.getNickname()));
 
-        // Generate new token
+        // Generate new token,登录成功后建立新的token
+        //token的作用是???
         return buildAuthToken(user);
     }
 
@@ -433,7 +443,7 @@ public class AdminServiceImpl implements AdminService {
         AuthToken token = new AuthToken();
 
         token.setAccessToken(HaloUtils.randomUUIDWithoutDash());
-        token.setExpiredIn(ACCESS_TOKEN_EXPIRED_SECONDS);
+        token.setExpiredIn(ACCESS_TOKEN_EXPIRED_SECONDS);//24小时
         token.setRefreshToken(HaloUtils.randomUUIDWithoutDash());
 
         // Cache those tokens, just for clearing
