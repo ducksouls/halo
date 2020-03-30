@@ -29,7 +29,7 @@ public abstract class StringCacheStore extends AbstractCacheStore<String, String
 
     /**
      * 2020年3月29日13:46:10,就目前已知的情况,这个方法用来缓存密码和令牌
-     *
+     *  2020年3月31日01:33:05 缓存还缓存软件的配置信息
      * @param key      一个key
      * @param value    密码或者令牌
      * @param timeout  过期时间
