@@ -84,7 +84,11 @@ public class OptionServiceImpl extends AbstractCrudService<Option, Integer> impl
         if (CollectionUtils.isEmpty(optionMap)) {
             return;
         }
-
+//双冒号写法,方法引用,这里的解释是这个
+// 前面是需要传进去的类型,后面是传进去的值要调用的方法
+// 可以看到传入一个Option类型的值,让他去调用getKey()
+//并且getKey()就是Option声明的方法
+//        repository.findAll();
         Map<String, Option> optionKeyMap = ServiceUtils.convertToMap(listAll(), Option::getKey);
 
         List<Option> optionsToCreate = new LinkedList<>();

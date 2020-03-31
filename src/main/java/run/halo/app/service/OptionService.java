@@ -25,13 +25,15 @@ import java.util.Optional;
 
 /**
  * Option service interface.
- *
+ *软件配置的接口
  * @author johnniang
  * @author ryanwang
  * @date 2019-03-14
  */
 public interface OptionService extends CrudService<Option, Integer> {
-
+    /**
+     * 分页???
+     */
     int DEFAULT_POST_PAGE_SIZE = 10;
 
     int DEFAULT_ARCHIVES_PAGE_SIZE = 10;
@@ -127,7 +129,7 @@ public interface OptionService extends CrudService<Option, Integer> {
 
     /**
      * Removes option permanently.
-     *
+     *  永久移除
      * @param id option id must not be null
      * @return option detail deleted
      */

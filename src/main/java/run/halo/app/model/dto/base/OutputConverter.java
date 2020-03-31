@@ -6,7 +6,7 @@ import static run.halo.app.utils.BeanUtils.updateProperties;
 
 /**
  * Converter interface for output DTO.
- *
+ *DTO从service传向controller
  * <b>The implementation type must be equal to DTO type</b>
  *
  * @param <DTO>    the implementation class type

@@ -13,7 +13,7 @@ import java.util.Map;
 
 /**
  * Property enum.
- *
+ * 配置的枚举
  * @author johnniang
  * @date 3/26/19
  */

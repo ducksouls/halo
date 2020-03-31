@@ -2,7 +2,7 @@ package run.halo.app.model.enums;
 
 /**
  * Post Permalink type enum.
- *
+ *  永久链接
  * @author ryanwang
  * @date 2020-01-07
  */

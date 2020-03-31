@@ -64,7 +64,6 @@ public class StartedListener implements ApplicationListener<ApplicationStartedEv
     @Override
     public void onApplicationEvent(ApplicationStartedEvent event) {
         //在此之前缓存已经清掉了???
-        this.migrate();
         try {
             this.migrate();
         } catch (SQLException e) {
