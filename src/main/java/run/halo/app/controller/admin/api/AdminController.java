@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import run.halo.app.Application;
 import run.halo.app.cache.lock.CacheLock;
+import run.halo.app.model.annotation.DisableOnCondition;
 import run.halo.app.model.dto.EnvironmentDTO;
 import run.halo.app.model.dto.StatisticDTO;
 import run.halo.app.model.params.LoginParam;
@@ -61,12 +62,16 @@ public class AdminController {
 
     @PostMapping("password/code")
     @ApiOperation("Sends reset password verify code")
+    @CacheLock(autoDelete = false)
+    @DisableOnCondition
     public void sendResetCode(@RequestBody @Valid ResetPasswordParam param) {
         adminService.sendResetPasswordCode(param);
     }
 
     @PutMapping("password/reset")
     @ApiOperation("Resets password by verify code")
+    @CacheLock(autoDelete = false)
+    @DisableOnCondition
     public void resetPassword(@RequestBody @Valid ResetPasswordParam param) {
         adminService.resetPasswordByCode(param);
     }
@@ -93,30 +98,35 @@ public class AdminController {
 
     @PutMapping("halo-admin")
     @ApiOperation("Updates halo-admin manually")
+    @Deprecated
     public void updateAdmin() {
         adminService.updateAdminAssets();
     }
 
     @GetMapping("spring/application.yaml")
     @ApiOperation("Gets application config content")
+    @DisableOnCondition
     public BaseResponse<String> getSpringApplicationConfig() {
         return BaseResponse.ok(HttpStatus.OK.getReasonPhrase(), adminService.getApplicationConfig());
     }
 
     @PutMapping("spring/application.yaml")
     @ApiOperation("Updates application config content")
+    @DisableOnCondition
     public void updateSpringApplicationConfig(@RequestParam(name = "content") String content) {
         adminService.updateApplicationConfig(content);
     }
 
     @PostMapping(value = {"halo/restart", "spring/restart"})
     @ApiOperation("Restarts halo server")
+    @DisableOnCondition
     public void restartApplication() {
         Application.restart();
     }
 
     @GetMapping(value = "halo/logfile")
     @ApiOperation("Gets halo log file content")
+    @DisableOnCondition
     public BaseResponse<String> getLogFiles(@RequestParam("lines") Long lines) {
         return BaseResponse.ok(HttpStatus.OK.getReasonPhrase(), adminService.getLogFiles(lines));
     }

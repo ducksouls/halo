@@ -2,10 +2,8 @@ package run.halo.app.config.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import run.halo.app.model.enums.Mode;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.Duration;
 
 import static run.halo.app.model.support.HaloConst.*;
@@ -16,6 +14,8 @@ import static run.halo.app.utils.HaloUtils.ensureSuffix;
  * Halo configuration properties.
  *
  * @author johnniang
+ * @author ryanwang
+ * @date 2019-03-15
  */
 @Data
 @ConfigurationProperties("halo")
@@ -37,6 +37,11 @@ public class HaloProperties {
     private boolean authEnabled = true;
 
     /**
+     * Halo startup mode.
+     */
+    private Mode mode = Mode.PRODUCTION;
+
+    /**
      * Admin path.
      */
     private String adminPath = "admin";
@@ -50,6 +55,11 @@ public class HaloProperties {
      * Halo backup directory.(Not recommended to modify this config);
      */
     private String backupDir = ensureSuffix(TEMP_DIR, FILE_SEPARATOR) + "halo-backup" + FILE_SEPARATOR;
+
+    /**
+     * Halo data export directory.
+     */
+    private String dataExportDir = ensureSuffix(TEMP_DIR, FILE_SEPARATOR) + "halo-data-export" + FILE_SEPARATOR;
 
     /**
      * Upload prefix.
@@ -68,10 +78,4 @@ public class HaloProperties {
      */
     private String cache = "memory";
 
-
-    public HaloProperties() throws IOException {
-        // Create work directory if not exist
-        Files.createDirectories(Paths.get(workDir));
-        Files.createDirectories(Paths.get(backupDir));
-    }
 }

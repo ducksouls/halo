@@ -1,6 +1,7 @@
 package run.halo.app.service;
 
 import com.qiniu.common.Zone;
+import com.qiniu.storage.Region;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.lang.NonNull;
@@ -26,11 +27,14 @@ import java.util.Optional;
  * Option service interface.
  *
  * @author johnniang
+ * @author ryanwang
  * @date 2019-03-14
  */
 public interface OptionService extends CrudService<Option, Integer> {
 
     int DEFAULT_POST_PAGE_SIZE = 10;
+
+    int DEFAULT_ARCHIVES_PAGE_SIZE = 10;
 
     int DEFAULT_COMMENT_PAGE_SIZE = 10;
 
@@ -198,6 +202,18 @@ public interface OptionService extends CrudService<Option, Integer> {
 
     /**
      * Gets property value by blog property.
+     * <p>
+     * Default value from property default value.
+     *
+     * @param property     blog property must not be null
+     * @param propertyType property type must not be null
+     * @param <T>          property type
+     * @return property value
+     */
+    <T> T getByPropertyOrDefault(@NonNull PropertyEnum property, @NonNull Class<T> propertyType);
+
+    /**
+     * Gets property value by blog property.
      *
      * @param property     blog property must not be null
      * @param propertyType property type must not be null
@@ -287,6 +303,13 @@ public interface OptionService extends CrudService<Option, Integer> {
     int getPostPageSize();
 
     /**
+     * Gets archives page size.
+     *
+     * @return page size
+     */
+    int getArchivesPageSize();
+
+    /**
      * Gets comment page size.
      *
      * @return page size
@@ -306,7 +329,16 @@ public interface OptionService extends CrudService<Option, Integer> {
      * @return qiniu zone
      */
     @NonNull
+    @Deprecated
     Zone getQnYunZone();
+
+    /**
+     * Get qiniu oss region.
+     *
+     * @return qiniu region
+     */
+    @NonNull
+    Region getQiniuRegion();
 
     /**
      * Gets locale.
@@ -333,6 +365,20 @@ public interface OptionService extends CrudService<Option, Integer> {
     String getBlogTitle();
 
     /**
+     * Gets global seo keywords.
+     *
+     * @return keywords
+     */
+    String getSeoKeywords();
+
+    /**
+     * Get global seo description.
+     *
+     * @return description
+     */
+    String getSeoDescription();
+
+    /**
      * Gets blog birthday.
      *
      * @return birthday timestamp
@@ -345,6 +391,69 @@ public interface OptionService extends CrudService<Option, Integer> {
      * @return PostPermalinkType
      */
     PostPermalinkType getPostPermalinkType();
+
+    /**
+     * Get sheet custom prefix.
+     *
+     * @return sheet prefix.
+     */
+    String getSheetPrefix();
+
+    /**
+     * Get links page custom prefix.
+     *
+     * @return links page prefix.
+     */
+    String getLinksPrefix();
+
+    /**
+     * Get photos page custom prefix.
+     *
+     * @return photos page prefix.
+     */
+    String getPhotosPrefix();
+
+    /**
+     * Get journals page custom prefix.
+     *
+     * @return journals page prefix.
+     */
+    String getJournalsPrefix();
+
+    /**
+     * Get archives custom prefix.
+     *
+     * @return archives prefix.
+     */
+    String getArchivesPrefix();
+
+    /**
+     * Get categories custom prefix.
+     *
+     * @return categories prefix.
+     */
+    String getCategoriesPrefix();
+
+    /**
+     * Get tags custom prefix.
+     *
+     * @return tags prefix.
+     */
+    String getTagsPrefix();
+
+    /**
+     * Get custom path suffix.
+     *
+     * @return path suffix.
+     */
+    String getPathSuffix();
+
+    /**
+     * Is enabled absolute path.
+     *
+     * @return true or false.
+     */
+    Boolean isEnabledAbsolutePath();
 
     /**
      * Replace option url in batch.

@@ -25,7 +25,7 @@ import run.halo.app.repository.base.BaseRepositoryImpl;
 @EnableJpaRepositories(basePackages = "run.halo.app.repository", repositoryBaseClass = BaseRepositoryImpl.class)
 public class Application extends SpringBootServletInitializer {
 
-    private static ConfigurableApplicationContext context;
+    private static ConfigurableApplicationContext CONTEXT;
 
     public static void main(String[] args) {
         // Customize the spring config location
@@ -33,7 +33,7 @@ public class Application extends SpringBootServletInitializer {
         System.setProperty("spring.config.additional-location", "file:${user.home}/.halo/,file:${user.home}/halo-dev/");
 
         // Run application
-        context = SpringApplication.run(Application.class, args);
+        CONTEXT = SpringApplication.run(Application.class, args);
 
     }
 
@@ -41,11 +41,11 @@ public class Application extends SpringBootServletInitializer {
      * Restart Application.
      */
     public static void restart() {
-        ApplicationArguments args = context.getBean(ApplicationArguments.class);
+        ApplicationArguments args = CONTEXT.getBean(ApplicationArguments.class);
 
         Thread thread = new Thread(() -> {
-            context.close();
-            context = SpringApplication.run(Application.class, args.getSourceArgs());
+            CONTEXT.close();
+            CONTEXT = SpringApplication.run(Application.class, args.getSourceArgs());
         });
 
         thread.setDaemon(false);
