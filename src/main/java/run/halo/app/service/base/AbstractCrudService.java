@@ -53,7 +53,7 @@ public abstract class AbstractCrudService<DOMAIN, ID> implements CrudService<DOM
 
     /**
      * List All
-     *
+     *  Returns all instances of the type.
      * @return List
      */
     @Override

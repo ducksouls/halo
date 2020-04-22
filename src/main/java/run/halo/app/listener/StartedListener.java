@@ -86,7 +86,7 @@ public class StartedListener implements ApplicationListener<ApplicationStartedEv
     }
 
     /**
-     * Migrate database.
+     * Migrate database.迁移数据库
      */
     private void migrate() throws SQLException {
         log.info("Starting migrate database...");
@@ -121,7 +121,7 @@ public class StartedListener implements ApplicationListener<ApplicationStartedEv
      */
     private void initThemes() {
         // Whether the blog has initialized
-        //在这里判断是否安装了...cao
+        //在这里判断是否安装了...cao,判断是否安装的时候把一些默认的配置放进内存缓存了............
         Boolean isInstalled = optionService.getByPropertyOrDefault(PrimaryProperties.IS_INSTALLED, Boolean.class, false);
         try {
             String themeClassPath = ResourceUtils.CLASSPATH_URL_PREFIX + ThemeService.THEME_FOLDER;

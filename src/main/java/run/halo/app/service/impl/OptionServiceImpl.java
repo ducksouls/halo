@@ -172,13 +172,13 @@ public class OptionServiceImpl extends AbstractCrudService<Option, Integer> impl
     }
 
     /**
-     * 缓存用在这里了...
+     * 缓存用在这里了...listAll都是默认的配置
      */
     @Override
     @SuppressWarnings("unchecked")
     public Map<String, Object> listOptions() {
         // Get options from cache
-        //缓存用在了这里
+        //缓存用在了这里,一开始只有5个最基本的
         return cacheStore.getAny(OPTIONS_KEY, Map.class).orElseGet(() -> {
             List<Option> options = listAll();
 
@@ -198,7 +198,7 @@ public class OptionServiceImpl extends AbstractCrudService<Option, Integer> impl
 
             Map<String, Object> result = new HashMap<>(userDefinedOptionMap);
 
-            // Add default property
+            // Add default property----不看注释...
             propertyEnumMap.keySet()
                 .stream()
                 .filter(key -> !keys.contains(key))
@@ -214,7 +214,7 @@ public class OptionServiceImpl extends AbstractCrudService<Option, Integer> impl
 
             // Cache the result
             cacheStore.putAny(OPTIONS_KEY, result);
-
+            //已经缓存好的,
             return result;
         });
     }

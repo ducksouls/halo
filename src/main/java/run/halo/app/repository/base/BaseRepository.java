@@ -19,6 +19,8 @@ import java.util.List;
  * @author ryanwang
  * @date 2019-03-15
  */
+//防止这个借口在启动的时候被实例化,因为这只是个中间接口,用来扩展功能的
+// 在初始的情况下实例将会失败,为了避免启动失败用这个注解
 @NoRepositoryBean
 public interface BaseRepository<DOMAIN, ID> extends JpaRepository<DOMAIN, ID> {
 

@@ -61,7 +61,7 @@ public abstract class AbstractCacheStore<K, V> implements CacheStore<K, V> {
                 // Return null
                 return null;
             }
-            //数据,这个数据指的是key???
+            //过期删除...
             return cacheWrapper.getData();
         });
     }
@@ -97,7 +97,7 @@ public abstract class AbstractCacheStore<K, V> implements CacheStore<K, V> {
         Date now = run.halo.app.utils.DateUtils.now();
 
         Date expireAt = null;
-
+        //指定缓存过期时间
         if (timeout > 0 && timeUnit != null) {
             expireAt = DateUtils.add(now, timeout, timeUnit);
         }

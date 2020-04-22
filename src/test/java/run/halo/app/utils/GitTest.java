@@ -82,8 +82,8 @@ public class GitTest {
 
     private Git cloneRepository() throws GitAPIException {
         return Git.cloneRepository()
-            .setURI("https://github.com/halo-dev/halo-theme-pinghsu.git")
-            .setDirectory(tempPath.toFile())
-            .call();
+                .setURI("https://github.com/halo-dev/halo-theme-pinghsu.git")
+                .setDirectory(tempPath.toFile())
+                .call();
     }
 }

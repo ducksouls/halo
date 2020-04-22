@@ -38,8 +38,8 @@ public class BeanUtilsTest {
     @Test
     public void transformFromInBatch() {
         TestA[] as = {
-            new TestA(1, 2),
-            new TestA(3, 4)
+                new TestA(1, 2),
+                new TestA(3, 4)
         };
 
         List<TestA> aList = Arrays.asList(as);

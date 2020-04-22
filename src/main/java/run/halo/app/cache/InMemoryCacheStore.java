@@ -53,7 +53,7 @@ public class InMemoryCacheStore extends AbstractStringCacheStore {
     void putInternal(String key, CacheWrapper<String> cacheWrapper) {
         Assert.hasText(key, "Cache key must not be blank");
         Assert.notNull(cacheWrapper, "Cache wrapper must not be null");
-
+        //实质储存的是在这个地方...
         // Put the cache wrapper
         CacheWrapper<String> putCacheWrapper = CACHE_CONTAINER.put(key, cacheWrapper);
 
@@ -116,6 +116,8 @@ public class InMemoryCacheStore extends AbstractStringCacheStore {
 
         @Override
         public void run() {
+            //定时清理任务...isPresent()表示能不能获得值,不能就需要从缓存中去除
+            //在get的时候已经做了一遍检查了
             CACHE_CONTAINER.keySet().forEach(key -> {
                 if (!InMemoryCacheStore.this.get(key).isPresent()) {
                     log.debug("Deleted the cache: [{}] for expiration", key);
