@@ -6,7 +6,7 @@ import org.springframework.util.Assert;
 
 /**
  * PostComment new event.
- *发送评论事件...
+ *发送评论事件...这是个抽象类
  * @author johnniang
  * @date 19-4-23
  */

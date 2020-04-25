@@ -51,7 +51,12 @@ import static org.springframework.data.domain.Sort.Direction.DESC;
 
 /**
  * Base comment service implementation.
- *
+ *评论的基本抽象类
+ * 已知评论类有:
+ * <br>{@link JournalCommentServiceImpl}</br>
+ *  <br>{@link SheetCommentServiceImpl}</br>
+ *   <br>{@link PostCommentServiceImpl}</br>
+ *   接口BaseComment定义了些共有方法,abstractCrud就更是了
  * @author johnniang
  * @author ryanwang
  * @date 2019-04-24
@@ -243,6 +248,7 @@ public abstract class BaseCommentServiceImpl<COMMENT extends BaseComment> extend
     public long countByStatus(CommentStatus status) {
         return baseCommentRepository.countByStatus(status);
     }
+
 
     @Override
     public COMMENT create(COMMENT comment) {
@@ -680,7 +686,7 @@ public abstract class BaseCommentServiceImpl<COMMENT extends BaseComment> extend
 
     /**
      * Concretes comment tree.
-     *
+     * 评论树....TODO:明天看
      * @param parentComment     parent comment vo must not be null
      * @param comments          comment list must not null
      * @param commentComparator comment vo comparator

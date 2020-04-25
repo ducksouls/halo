@@ -4,7 +4,7 @@ import org.springframework.lang.NonNull;
 
 /**
  * PostComment reply event.
- *
+ *评论回复的事件
  * @author johnniang
  * @date 19-4-23
  */

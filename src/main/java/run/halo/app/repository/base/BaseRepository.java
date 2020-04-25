@@ -12,14 +12,14 @@ import java.util.List;
 
 /**
  * Base repository interface contains some common methods.
- *
+ * 仓库类的基类
  * @param <DOMAIN> doamin type
  * @param <ID>     id type
  * @author johnniang
  * @author ryanwang
  * @date 2019-03-15
  */
-//防止这个借口在启动的时候被实例化,因为这只是个中间接口,用来扩展功能的
+//防止这个接口在启动的时候被实例化,因为这只是个中间接口,用来扩展功能的
 // 在初始的情况下实例将会失败,为了避免启动失败用这个注解
 @NoRepositoryBean
 public interface BaseRepository<DOMAIN, ID> extends JpaRepository<DOMAIN, ID> {
