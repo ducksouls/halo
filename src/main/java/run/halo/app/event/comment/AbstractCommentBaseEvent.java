@@ -6,7 +6,7 @@ import org.springframework.util.Assert;
 
 /**
  * PostComment new event.
- *
+ *发送评论事件...
  * @author johnniang
  * @date 19-4-23
  */

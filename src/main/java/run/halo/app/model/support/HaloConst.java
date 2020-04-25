@@ -144,7 +144,7 @@ public class HaloConst {
     public static String USER_SESSION_KEY = "user_session";
 
     static {
-        // Set version
+        // Set version 版本信息在 manifests文件里
         HALO_VERSION = HaloConst.class.getPackage().getImplementationVersion();
     }
 }

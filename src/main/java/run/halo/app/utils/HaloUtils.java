@@ -27,6 +27,12 @@ public class HaloUtils {
     public static final String URL_SEPARATOR = "/";
     private static final String RE_HTML_MARK = "(<[^<]*?>)|(<[\\s]*?/[^<]*?>)|(<[^<]*?/[\\s]*?>)";
 
+    /**
+     * 保证前后缀是正确的
+     * @param string
+     * @param bothfix
+     * @return
+     */
     @NonNull
     public static String ensureBoth(@NonNull String string, @NonNull String bothfix) {
         return ensureBoth(string, bothfix, bothfix);

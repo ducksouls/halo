@@ -48,6 +48,7 @@ public class HaloProperties {
 
     /**
      * Work directory.
+     * 判断路径最后是否有斜杠,
      */
     private String workDir = ensureSuffix(USER_HOME, FILE_SEPARATOR) + ".halo" + FILE_SEPARATOR;
 

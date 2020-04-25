@@ -34,12 +34,19 @@ public class HaloConfiguration {
     @Autowired
     HaloProperties haloProperties;
 
+    /**
+     * json对象的映射器
+     *
+     */
     @Bean
     public ObjectMapper objectMapper(Jackson2ObjectMapperBuilder builder) {
         builder.failOnEmptyBeans(false);
         return builder.build();
     }
 
+    /**
+     *Rest http模板
+     */
     @Bean
     public RestTemplate httpsRestTemplate(RestTemplateBuilder builder)
             throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
@@ -49,6 +56,10 @@ public class HaloConfiguration {
         return httpsRestTemplate;
     }
 
+    /**
+     * 判断是否执行初始化代码，即如果用户已经创建了bean，则相关的初始化代码不再执行
+     * 条件满足当没有这个Bean在的时候回执行下面的代码...
+     */
     @Bean
     @ConditionalOnMissingBean
     public AbstractStringCacheStore stringCacheStore() {

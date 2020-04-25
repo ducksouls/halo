@@ -24,11 +24,20 @@ import static run.halo.app.utils.HaloUtils.ensureBoth;
  * @author ryanwang
  * @date 2020-03-24
  */
+
+// 自定义的,对controller里requestmapping 注解过方法进行处理的一个类
+
 @Slf4j
 public class HaloRequestMappingHandlerMapping extends RequestMappingHandlerMapping implements ApplicationListener<StaticStorageChangedEvent> {
 
+    /**
+     * 黑匹配???感觉应该是白名单啊???
+     */
     private final Set<String> blackPatterns = new HashSet<>(16);
 
+    /**
+     * 路经匹配器
+     */
     private final PathMatcher pathMatcher;
 
     private final HaloProperties haloProperties;
@@ -39,6 +48,9 @@ public class HaloRequestMappingHandlerMapping extends RequestMappingHandlerMappi
         pathMatcher = new AntPathMatcher();
     }
 
+    /**
+     * 根据请求的路径,也就是lookupPath去匹配
+     */
     @Override
     protected HandlerMethod lookupHandlerMethod(String lookupPath, HttpServletRequest request) throws Exception {
         log.debug("Looking path: [{}]", lookupPath);
@@ -54,7 +66,7 @@ public class HaloRequestMappingHandlerMapping extends RequestMappingHandlerMappi
     private void initBlackPatterns() {
         String uploadUrlPattern = ensureBoth(haloProperties.getUploadUrlPrefix(), URL_SEPARATOR) + "**";
         String adminPathPattern = ensureBoth(haloProperties.getAdminPath(), URL_SEPARATOR) + "?*/**";
-
+        //看起来都是些静态资源
         blackPatterns.add("/themes/**");
         blackPatterns.add("/js/**");
         blackPatterns.add("/images/**");
@@ -72,6 +84,7 @@ public class HaloRequestMappingHandlerMapping extends RequestMappingHandlerMappi
     @Override
     public void onApplicationEvent(StaticStorageChangedEvent event) {
         Path staticPath = event.getStaticPath();
+        //括号里的内容支持包括流以及任何可关闭的资源，数据流会在 try 执行完毕后自动被关闭，而不用我们手动关闭了
         try (Stream<Path> rootPathStream = Files.list(staticPath)) {
             synchronized (this) {
                 blackPatterns.clear();

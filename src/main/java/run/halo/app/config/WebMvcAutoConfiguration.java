@@ -17,6 +17,7 @@ import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -39,7 +40,7 @@ import static run.halo.app.utils.HaloUtils.*;
 
 /**
  * Spring mvc configuration.
- *
+ * 配置web mvc
  * @author ryanwang
  * @date 2018-01-02
  */
@@ -51,8 +52,14 @@ public class WebMvcAutoConfiguration extends WebMvcConfigurationSupport {
 
     private static final String FILE_PROTOCOL = "file:///";
 
+    /**
+     * 分页对象
+     */
     private final PageableHandlerMethodArgumentResolver pageableResolver;
 
+    /**
+     * 排序对象
+     */
     private final SortHandlerMethodArgumentResolver sortResolver;
 
     private final HaloProperties haloProperties;
@@ -65,6 +72,13 @@ public class WebMvcAutoConfiguration extends WebMvcConfigurationSupport {
         this.haloProperties = haloProperties;
     }
 
+    /**
+     * HTTP输入请求格式向Java对象的转换；Java对象向HTTP输出请求的转换
+     * {@link MappingJackson2HttpMessageConverter} 可以将Java对象转换为application/json，
+     * 而{@link ProtobufHttpMessageConverter}仅支持com.google.protobuf.Message类型的输入，
+     * 但是可以输出application/json、application/xml、text/plain和application/x-protobuf这么多格式。
+     * 链接：https://www.jianshu.com/p/ffe56d9553fd
+     */
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.stream()
@@ -122,7 +136,8 @@ public class WebMvcAutoConfiguration extends WebMvcConfigurationSupport {
         }
     }
 
-
+    /**自定义格式化配置,这里指定的事字符串转枚举
+     */
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverterFactory(new StringToEnumConverterFactory());
@@ -161,7 +176,7 @@ public class WebMvcAutoConfiguration extends WebMvcConfigurationSupport {
 
     /**
      * Configuring view resolver
-     *
+     *视图处理类 emmmm
      * @param registry registry
      */
     @Override
@@ -177,6 +192,11 @@ public class WebMvcAutoConfiguration extends WebMvcConfigurationSupport {
         registry.viewResolver(resolver);
     }
 
+    /**
+     * 这个才是重头戏吧?
+     * 可以用来想查看应用请求对应的url和方法情况
+     * 处理器映射器.......
+     */
     @Override
     protected RequestMappingHandlerMapping createRequestMappingHandlerMapping() {
         return new HaloRequestMappingHandlerMapping(haloProperties);
